@@ -66,17 +66,26 @@ public class NearestAeroplane {
      * @param responseJson - ArrayList of plane information
      * @return filteredResponse - ArrayList of plane information (filtered to contain relevant information only).
      */
-    public static ArrayList<ArrayList<Object>> filterAPIResponse(ArrayList<Object> responseJson) {
+    public static ArrayList<ArrayList<PlaneInformation>> filterAPIResponse(ArrayList<Object> responseJson) {
 
-        ArrayList<ArrayList<Object>> filteredResponse = new ArrayList<ArrayList<Object>>();
+        ArrayList<ArrayList<PlaneInformation>> filteredResponse = new ArrayList<ArrayList<PlaneInformation>>();
         for (int i = 0; i < responseJson.size(); i++) {
             ArrayList<Object> tempAeroplaneInformation = (ArrayList<Object>) responseJson.get(i);
-            ArrayList<Object> aeroplaneInformation = new ArrayList<>();
-            int[] indicesToKeep = {0, 1, 2, 5, 6, 13};
-            for (int j = 0; j < indicesToKeep.length; j++) {
-                aeroplaneInformation.add(tempAeroplaneInformation.get(indicesToKeep[j]));
+            ArrayList<PlaneInformation> aeroplaneInformationList = new ArrayList<>();
+            try {
+                PlaneInformation planeInformation = new PlaneInformation(
+                        (String) tempAeroplaneInformation.get(0),
+                        (String) tempAeroplaneInformation.get(1),
+                        (String) tempAeroplaneInformation.get(2),
+                        (double) tempAeroplaneInformation.get(5),
+                        (double) tempAeroplaneInformation.get(6),
+                        (double) tempAeroplaneInformation.get(13)
+                );
+                aeroplaneInformationList.add(planeInformation);
+                filteredResponse.add(aeroplaneInformationList);
+            } catch (IllegalArgumentException | NullPointerException e) {
+                continue;
             }
-            filteredResponse.add(aeroplaneInformation);
 
         }
 
@@ -110,7 +119,7 @@ public class NearestAeroplane {
      * @param inputLatLong        -
      * @return ArrayList of the information of the closest aeroplane.
      */
-    public static void findClosest(ArrayList<ArrayList<Object>> filteredAPIResponse, LatLong inputLatLong) {
+    public static void findClosest(ArrayList<ArrayList<PlaneInformation>> filteredAPIResponse, LatLong inputLatLong) {
 
         return;
     }
@@ -122,17 +131,6 @@ public class NearestAeroplane {
      */
     public static void printClosestAeroplaneInformation(ArrayList<Object> closestAeroplaneInformation) {
         System.out.println(closestAeroplaneInformation);
-    }
-
-    public static void main(String[] args) {
-        LatLong london = new LatLong(51.5074, 0.1278);
-        HashMap<String, Double> londonRadians = london.coordinateToRadians();
-
-        HashMap<String, ArrayList<Object>> y = callOpenSkyAPI(london);
-        ArrayList<Object> z = y.get("states");
-        ArrayList<ArrayList<Object>> test = filterAPIResponse(z);
-        System.out.println(test);
-
     }
 
 }

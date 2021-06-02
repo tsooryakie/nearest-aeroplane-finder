@@ -1,24 +1,37 @@
 public class PlaneInformation {
 
     private String icaoCode, callSign, country;
-    private double latitude, longitude, altitude;
+    private Double longitude, latitude, altitude;
 
     /**
      * @param icaoCode
      * @param callSign
      * @param country
-     * @param latitude
      * @param longitude
+     * @param latitude
      * @param altitude
      */
     public PlaneInformation(String icaoCode, String callSign, String country,
-                            double latitude, double longitude, double altitude) {
+                            Double longitude, Double latitude, Double altitude) {
+
+        if (callSign == null) {
+            throw new IllegalArgumentException("API Replied with null Call Sign");
+        }
+        if (longitude == null) {
+            throw new IllegalArgumentException("API Replied with null Longitude");
+        }
+        if (latitude == null) {
+            throw new IllegalArgumentException("API Replied with null Latitude");
+        }
+        if (altitude == null) {
+            throw new IllegalArgumentException("API Replied with null Altitude");
+        }
 
         this.icaoCode = icaoCode;
         this.callSign = callSign;
         this.country = country;
-        this.latitude = latitude;
         this.longitude = longitude;
+        this.latitude = latitude;
         this.altitude = altitude;
     }
 
