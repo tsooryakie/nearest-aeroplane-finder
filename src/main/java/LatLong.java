@@ -74,6 +74,7 @@ public class LatLong {
 
     }
 
+
     /**
      * The toString method for the LatLong class.
      *

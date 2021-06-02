@@ -1,6 +1,7 @@
 import java.lang.Math;
 import java.util.*;
 import java.lang.reflect.Type;
+
 import kong.unirest.*;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
@@ -104,18 +105,19 @@ public class NearestAeroplane {
     /**
      * This method uses the calculateGreatCircleDistance() method to return an ArrayList of information
      * about the closest aeroplane.
+     *
      * @param filteredAPIResponse - Filtered list of all aeroplanes and their information.
+     * @param inputLatLong        -
      * @return ArrayList of the information of the closest aeroplane.
      */
-    public static ArrayList<Object> findClosest(ArrayList<Object> filteredAPIResponse) {
+    public static void findClosest(ArrayList<ArrayList<Object>> filteredAPIResponse, LatLong inputLatLong) {
 
-        ArrayList<Object> closestPlaneInformation = new ArrayList<Object>();
-
-        return closestPlaneInformation;
+        return;
     }
 
     /**
      * This method prints the resulting information about the closest aeroplane.
+     *
      * @param closestAeroplaneInformation - ArrayList of information of the closest plane from findClosest() method.
      */
     public static void printClosestAeroplaneInformation(ArrayList<Object> closestAeroplaneInformation) {
@@ -129,6 +131,8 @@ public class NearestAeroplane {
         HashMap<String, ArrayList<Object>> y = callOpenSkyAPI(london);
         ArrayList<Object> z = y.get("states");
         ArrayList<ArrayList<Object>> test = filterAPIResponse(z);
+        System.out.println(test);
+
     }
 
 }
