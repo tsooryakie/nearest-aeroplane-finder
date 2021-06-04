@@ -96,8 +96,8 @@ public class NearestAeroplane {
      * This method calculates the Great Circle distance between a given set of coordinates,
      * and a plane currently flying closest to the given set of coordinates.
      *
-     * @param inputCoordinates - HashMap of Latitude and Longitude coordinates of the input location.
-     * @param planeCoordinates - HashMap of Latitude and Longitude coordinates of the plane location.
+     * @param inputCoordinates - HashMap of Latitude and Longitude coordinates of the input location (in Radians).
+     * @param planeCoordinates - HashMap of Latitude and Longitude coordinates of the plane location (in Radians).
      * @return greatCircleDistance - Spherical distance of plane from given coordinates.
      */
     public static double calculateGreatCircleDistance(HashMap<String, Double> inputCoordinates,
@@ -116,21 +116,33 @@ public class NearestAeroplane {
      * about the closest aeroplane.
      *
      * @param filteredAPIResponse - Filtered list of all aeroplanes and their information.
-     * @param inputLatLong        -
+     * @param inputLatLong        - User input LatLong Coordinates, from which to calculate distance to nearest plane.
      * @return ArrayList of the information of the closest aeroplane.
      */
-    public static void findClosest(ArrayList<ArrayList<PlaneInformation>> filteredAPIResponse, LatLong inputLatLong) {
+    public static ArrayList<PlaneInformation> findClosest(ArrayList<ArrayList<PlaneInformation>> filteredAPIResponse,
+                                                          LatLong inputLatLong) {
 
-        return;
-    }
+        LatLong initialPlaneLatLong = new LatLong(filteredAPIResponse.get(0).get(0).getLatitude(),
+                filteredAPIResponse.get(0).get(0).getLongitude());
 
-    /**
-     * This method prints the resulting information about the closest aeroplane.
-     *
-     * @param closestAeroplaneInformation - ArrayList of information of the closest plane from findClosest() method.
-     */
-    public static void printClosestAeroplaneInformation(ArrayList<Object> closestAeroplaneInformation) {
-        System.out.println(closestAeroplaneInformation);
+        int minDistanceIndex = 0;
+        double minDistance = calculateGreatCircleDistance(inputLatLong.coordinateToRadians(),
+                initialPlaneLatLong.coordinateToRadians());
+        for (int i = 0; i < filteredAPIResponse.size(); i++) {
+            LatLong planeLatLong = new LatLong(filteredAPIResponse.get(i).get(0).getLatitude(),
+                    filteredAPIResponse.get(i).get(0).getLongitude());
+
+            double distance = calculateGreatCircleDistance(inputLatLong.coordinateToRadians(),
+                    planeLatLong.coordinateToRadians());
+
+            if (distance <= minDistance) {
+                minDistance = distance;
+                minDistanceIndex = i;
+            }
+
+        }
+
+        return filteredAPIResponse.get(minDistanceIndex);
     }
 
 }
