@@ -4,12 +4,15 @@ public class PlaneInformation {
     private Double longitude, latitude, altitude;
 
     /**
-     * @param icaoCode
-     * @param callSign
-     * @param country
-     * @param longitude
-     * @param latitude
-     * @param altitude
+     * Constructor for the PlaneInformation class - Creates a PlaneInformation object with relevant information
+     * about a given aeroplane.
+     *
+     * @param icaoCode  - Plane's ICAO Code
+     * @param callSign  - Plane's Call Sign
+     * @param country   - Plane's Country of Origin
+     * @param longitude - Plane's Longitude
+     * @param latitude  - Plane's Latitude
+     * @param altitude  - Plane's Current Altitude
      */
     public PlaneInformation(String icaoCode, String callSign, String country,
                             Double longitude, Double latitude, Double altitude) {
@@ -36,92 +39,117 @@ public class PlaneInformation {
     }
 
     /**
-     * @return
+     * Getter for the icaoCode variable.
+     *
+     * @return - ICAO Code.
      */
     public String getIcaoCode() {
         return this.icaoCode;
     }
 
     /**
-     * @return
+     * Getter for the callSign variable.
+     *
+     * @return - Call Sign
      */
     public String getCallSign() {
         return this.callSign;
     }
 
     /**
-     * @return
+     * Getter for the country variable.
+     *
+     * @return - Country
      */
     public String getCountry() {
         return this.country;
     }
 
     /**
-     * @return
+     * Getter for the latitude variable.
+     *
+     * @return - Latitude
      */
     public double getLatitude() {
         return this.latitude;
     }
 
     /**
-     * @return
+     * Getter for the longitude variable.
+     *
+     * @return - Longitude
      */
     public double getLongitude() {
         return this.longitude;
     }
 
     /**
-     * @return
+     * Getter for the altitude variable.
+     *
+     * @return - Altitude
      */
     public double getAltitude() {
         return this.altitude;
     }
 
     /**
-     * @param newIcaoCode
+     * Setter for the icaoCode variable.
+     *
+     * @param newIcaoCode - New ICAO Code
      */
     public void setIcaoCode(String newIcaoCode) {
         this.icaoCode = newIcaoCode;
     }
 
     /**
-     * @param newCallSign
+     * Setter for the callSign variable.
+     *
+     * @param newCallSign - New Call Sign
      */
     public void setCallSign(String newCallSign) {
         this.callSign = newCallSign;
     }
 
     /**
-     * @param newCountry
+     * Setter for the country variable.
+     *
+     * @param newCountry - New Country
      */
     public void setCountry(String newCountry) {
         this.country = newCountry;
     }
 
     /**
-     * @param newLatitude
+     * Setter for the Latitude variable.
+     *
+     * @param newLatitude - New Latitude
      */
     public void setLatitude(double newLatitude) {
         this.latitude = newLatitude;
     }
 
     /**
-     * @param newLongitude
+     * Setter for the Longitude variable.
+     *
+     * @param newLongitude - New Longitude
      */
     public void setLongitude(double newLongitude) {
         this.longitude = newLongitude;
     }
 
     /**
-     * @param newAltitude
+     * Setter for the Altitude variable.
+     *
+     * @param newAltitude - New Altitude
      */
     public void setAltitude(double newAltitude) {
         this.altitude = newAltitude;
     }
 
     /**
+     * PlaneInformation toString method to represent the plane information in a human readable format.
      *
-     * @return
+     * @return - PlaneInformation human readable string.
      */
     public String toString() {
         return "Flight: " + getCallSign() + ", ICAO Code: " + getIcaoCode() + ", Country: " + getCountry() +
