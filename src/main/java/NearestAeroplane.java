@@ -83,7 +83,7 @@ public class NearestAeroplane {
                 );
                 aeroplaneInformationList.add(planeInformation);
                 filteredResponse.add(aeroplaneInformationList);
-            } catch (IllegalArgumentException | NullPointerException e) {
+            } catch (IllegalArgumentException | NullPointerException exception) {
                 continue;
             }
 
